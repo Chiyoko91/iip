@@ -14,7 +14,7 @@ unsigned char imgout[3][512][512];
 double tmp_r2y[3][512][512]={};
 double tmp_y2r[3][512][512]={};
 int filesize,width,height,ins_byte;
-const double convert[3][3]={//変換式(RGB -> YCbCr)
+const double convert[3][3]={//変換式(RGB -> YCbCr)　ここのconstをつけるかつけないかで243行目の出力結果が変わる
     {0.2990,0.5870,0.1140},
     {-0.1687,-0.3313,0.5000},
     {0.5000,-0.4187,-0.0813}
@@ -30,9 +30,9 @@ int main(void)
 {
     get_data();
     rgb_to_ybr();
-    processing();
+    /*processing();
     ybr_to_rgb();      
-    put_data();
+    put_data();*/
     return 0;
 }
 
@@ -211,7 +211,7 @@ void rgb_to_ybr(void)
         {
             for(int k=0;k<3;k++)
             {
-	            tmp_r2y[0][i][j] += convert[0][k] * imgin[k][i][j];
+	        tmp_r2y[0][i][j] += convert[0][k] * imgin[k][i][j];
                 tmp_r2y[1][i][j] += convert[1][k] * imgin[k][i][j];
                 tmp_r2y[2][i][j] += convert[2][k] * imgin[k][i][j];
             }
